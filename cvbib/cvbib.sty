@@ -6,12 +6,13 @@
 %
 %
 % HISTORY:
-%	2015-01-19: 	Converted to package
-%				Added monthly sorting
-%				Escaped periods in MS and PhD
-%				Changed PhD thesis to PhD dissertation
-%	2014-01-28: 	Updated documentation
-%	2013-12-07: 	Initial version
+%   2015-01-20: Cleaned up some formatting
+%	2015-01-19: Converted to package
+%	            Added monthly sorting
+%	            Escaped periods in MS and PhD
+%	            Changed PhD thesis to PhD dissertation
+%	2014-01-28: Updated documentation
+%	2013-12-07: Initial version
 %
 %
 % USAGE:
@@ -65,36 +66,36 @@
 %
 %
 % REFERENCES:
-% 	[ 1 ] http://robjhyndman.com/research/cv.sty 										[2013-12-07]
-% 	[ 2 ] http://tex.stackexchange.com/questions/49975/italicizing-an-author-in-biblatex 			[2013-12-07]
-% 	[ 3 ] http://tex.stackexchange.com/questions/73136/make-specific-author-bold-using-biblatex 	[2013-12-07]
-% 	[ 4 ] http://tex.stackexchange.com/questions/12806/guidelines-for-customizing-biblatex-styles/ 	[2013-12-07]
-%	[ 5 ] http://tex.stackexchange.com/questions/25088/localize-terms-in-bibtex-biblatex-entries 	[2014-02-20]
+% 	[ 1 ] http://robjhyndman.com/research/cv.sty                                                    [2013-12-07]
+% 	[ 2 ] http://tex.stackexchange.com/questions/49975/italicizing-an-author-in-biblatex            [2013-12-07]
+% 	[ 3 ] http://tex.stackexchange.com/questions/73136/make-specific-author-bold-using-biblatex     [2013-12-07]
+% 	[ 4 ] http://tex.stackexchange.com/questions/12806/guidelines-for-customizing-biblatex-styles   [2013-12-07]
+%	[ 5 ] http://tex.stackexchange.com/questions/25088/localize-terms-in-bibtex-biblatex-entries    [2014-02-20]
 %
 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{cvbib}[2014/01/19 Sets up BibLaTeX for creating a cv]
+\ProvidesPackage{cvbib}[2014/01/20 Sets up BibLaTeX for creating a cv]
 
 
-\RequirePackage{xpatch}				% this is used to update the formatting of names
+\RequirePackage{xpatch}           % this is used to update formatting
 
 % Bibliography formatting
 \RequirePackage[%
-	sorting=ydmdnt,				% reverse sort by date and month
-	bibstyle=authoryear,				% use author year style
-	defernumbers=true,				% 
-	maxnames=99,			 		% show up to 99 author names in the reference
-	firstinits=true, 					% use first initials
-	terseinits=false,					% period after initials
-	uniquename=init,				% 
-	dashed=false,					% 
-	uniquename=false,				% 
-	doi=true,						% include doi where present
-	isbn=false,					% include isbn where present
-	useprefix=true,					% 
-	natbib=true,					% 
-	backend=biber					% use biber on the backend 
+	sorting=ydmdnt,               % reverse sort by date and month
+	bibstyle=authoryear,          % use author year style
+	defernumbers=true             % 
+	maxnames=99,                  % show up to 99 author names in the reference
+	firstinits=true,              % use first initials
+	terseinits=false,             % period after initials
+	uniquename=init,              % 
+	dashed=false,                 % 
+	uniquename=false,             % 
+	doi=true,                     % include doi where present
+	isbn=false,                   % include isbn where present
+	useprefix=true,               % 
+	natbib=true,                  % 
+	backend=biber                 % use biber on the backend 
 ]{biblatex}
 
 
@@ -109,11 +110,11 @@
   \sort[direction=descending]{
     \field[strside=left,strwidth=4]{sortyear}
     \field[strside=left,strwidth=4]{year}
-    \literal{9999}
+    \literal{9999} % if no year set to 9999
   }
   \sort[direction=descending]{
     \field[padside=left,padwidth=2,padchar=0]{month}
-    \literal{00}
+    \literal{00} % if no month, set to 0
   }
   \sort{
     \field{sortname}
@@ -172,7 +173,7 @@
 \DeclareNameAlias{sortname}{last-first}
 
 
-%% Here follows what I stole from [1]
+%% Begin of code from [1]
 \DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{pages}{#1}
 \DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
@@ -232,6 +233,8 @@
 \newcounter{papers}\setcounter{papers}{0}
 \newcounter{sumpapers}\setcounter{sumpapers}{0}
 \def\lastref#1{\addtocounter{#1}{\value{papers}}\setcounter{papers}{0}}
+
+%% End of code from [1]
 
 
 %% Define best paper and best student paper (used [5])
