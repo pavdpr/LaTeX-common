@@ -1,0 +1,173 @@
+\documentclass[10pt, oneside]{article}
+
+
+
+
+\begin{document}
+
+\title{The \texttt{thesisfrontmatter} package
+\footnote{This file has version number v1.0, last revised on 11/21/02}}
+\author{Emmett J. Ientilucci \\
+Chester F. Carlson Center for Imaging Science \\
+Rochester Institute of Technology \\
+emmett@cis.rit.edu \\}
+\date{November 21, 2002}
+\maketitle
+
+\begin{abstract}
+The purpose of this package is to automatically generate all the front matter found in a
+Rochester Institute of Technology (RIT), Center for Imaging Science (CIS) thesis or
+dissertation. This front matter is created for both an M.S. or Ph.D. proposal, thesis, or
+dissertation.
+\end{abstract}
+
+\section{Introduction}
+The introductory pages found in every proposal, thesis, or dissertation are crucial to
+the completeness of the report, not to mention the importance of graduation.  The
+introductory pages usually include a declaration page, approval page, and copyright page.
+Additionally, one nominally includes one or all of the following: an abstract page, an
+acknowledgements page, and/or a dedication page. The \verb"thesisfrontmatter" package
+creates any one of these pages by first defining some variables within the
+\textit{document class} and then by calling a simple command to create the desired page
+of interest.
+
+\section{Usage}
+The package can be used by entering the command \\
+
+\verb"\usepackage[option]{thesisfrontmatter}" \\
+
+\noindent in the preamble of the document.  The option field is either \verb"ms" or
+\verb"phd" where \verb"ms" creates the formatted front matter for a masters thesis or
+proposal and \verb"phd" creates the formatted front matter for a doctorate of philosophy
+dissertation or proposal. The package or style file (\verb".sty"), can be placed in the
+current working directory or off your local \texttt{texmf} directory structure
+(\textit{e.g.} \verb"C:\localtexmf\tex\latex\").
+
+In order to create the necessary pages with titles, authors, committee members, etc. in
+it, the following fields should be defined, as needed, within the \textit{document
+class}.
+
+\begin{verbatim}
+\degreetitle{}
+\degreeauthor{}
+\prevdegreeA{}
+\prevdegreeB{}
+\prevdegreeC{}
+\degreedate{}
+\advisor{}
+\memberA{}
+\memberB{}
+\memberC{}
+\memberD{}
+\end{verbatim}
+
+Once the appropriate fields have been defined, the desired front matter page can be
+created by using one (or all) of the following commands.
+
+\begin{verbatim}
+\makeproposaldeclaration
+\makeproposalapproval
+\makedeclaration
+\makeapproval
+\makecopyright
+\end{verbatim}
+
+One only needs to define the fields that are applicable for the desired front matter
+page. These dependencies can be seen below. \\
+
+\fbox{$\backslash$\texttt{makeproposaldeclaration}} requires the definition of
+\verb"\degreetitle{}", \verb"\degreeauthor{}", and \verb"\degreedate{}". \\
+
+\fbox{$\backslash$\texttt{makeproposalapproval}} requires the definition
+of \verb"\degreeauthor{}" and \verb"\advisor{}". \\
+
+\fbox{$\backslash$\texttt{makedeclaration}} requires the definition of
+\verb"\degreetitle{}", \verb"\degreeauthor{}", \verb"\prevdegreeA{}",
+etc., and \verb"\degreedate{}". \\
+
+\fbox{$\backslash$\texttt{makeapproval}} requires the definition of
+\verb"\degreeauthor{}", \verb"\advisor{}", \verb"\memberA{}",
+\verb"\memberB{}", etc. \\
+
+\fbox{$\backslash$\texttt{makecopyright}} requires the definition
+of \verb"\degreetitle{}" and \verb"\degreeauthor{}". \\
+
+
+
+
+\subsection{Other \texttt{thesisfrontmatter} Environments}
+In addition to the pages described above, there are three formatted environments that
+have been created as well.  These are for the creation of the abstract, acknowledgements,
+and dedication pages.  They can be used by simply typing the following within the
+ \textit{document class}\\
+
+\noindent
+\verb"\begin{"\textit{environment}\verb"}" \\
+\textit{text} \\
+\verb"\end{"\textit{environment}\verb"}" \\
+
+where environment is either \verb"abstract", \verb"acknowledgements", or
+\texttt{dedication}. The abstract environment creates a new page with formatted title
+information on it.  Therefore, it requires the definition of the fields
+\verb"\degreetitle" and \verb"\degreeauthor".
+
+The acknowledgements environment also creates a new page and simply places the word
+``acknowledgements" at the top of the page.  Finally, the dedication environment creates a
+new page that has centered and italicized text on it.
+
+
+
+
+\subsection{Final Page Formatting Comments}
+In addition to creating all the above mentioned pages, the \texttt{thesisfrontmatter}
+package also changes the overall page layout of the document (based on the \textit{book}
+class). That is, the page height and width have been changed to 20 cm and 14.5 cm,
+respectively. Feel free to email me if you have any questions.  Happy \TeX ing!!
+
+
+
+
+\section{Example}
+Below is an example of how one might use the \texttt{thesisfrontmatter} package to create
+ front matter for the declaration, approval, copyright, abstract,
+acknowledgements, and dedication pages for a Ph.D. dissertation.
+\begin{verbatim}
+\documentclass[11pt, oneside]{book}
+
+\usepackage[phd]{thesisfrontmatter}
+
+\begin{document}
+\degreetitle{A New Approach to Bivariant K-theory}
+\degreeauthor{Dorin Dumitrascu}
+\degreedate{May 28, 2000}
+\prevdegreeA{B.S. Penn State University, 1994}
+\prevdegreeB{M.S. Stony Brook University, 1998}
+\advisor{Dr. Arkady Tempelman}
+\memberA{Dr. Nigel Higson}
+\memberB{Dr. Wen-Ching Winnie Li}
+\memberC{Dr. Diane Henderson}
+
+\makedeclaration
+\makeapproval
+\makecopyright
+
+\begin{abstract}
+This is the abstract text
+\end{abstract}
+
+\begin{acknowledgements}
+This is the acknowledgements text
+\end{acknowledgements}
+
+\begin{dedication}
+This is the dedication text
+\end{dedication}
+
+\include{chapter1_introduction}
+\include{chapter2_background}
+
+\end{document}
+\end{verbatim}
+
+
+\end{document}
